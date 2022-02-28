@@ -2,10 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
+import "bootstrap/dist/css/bootstrap.min.css";
+import RouterComponent from "./components/Router";
 
 ReactDOM.render(
 	<React.StrictMode>
-		<h1>Hello world!</h1>
+		<RouterComponent />
 	</React.StrictMode>,
 	document.getElementById("root")
 );
