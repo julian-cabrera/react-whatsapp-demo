@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 
-const WhatsappWindow = () => {
+const SingleMessage = () => {
 	const [message, setMessage] = useState("");
 	const [number, setNumber] = useState(0);
 
@@ -22,21 +22,21 @@ const WhatsappWindow = () => {
 			<div className="d-flex justify-content-end">
 				<button className="btn text-light">X</button>
 			</div>
-			<div id="wsp_number" className="mb-3 input-group">
+			<div className="mb-3 input-group">
 				<span className="input-group-text text-white bg-success border-success fw-bold">
 					+
 				</span>
 				<input
 					type="text"
-					placeholder="+1 324 654987"
-					className="form-control rounded-3"
+					placeholder="Example: 14706271578"
+					className="form-control rounded-3 text-dark"
 					value={number}
 					onChange={(e) => setNumber(e.target.value)}
 				/>
 			</div>
-			<div id="wsp_textarea" className="mb-3 d-flex justify-content-end">
+			<div className="mb-3 d-flex justify-content-end">
 				<textarea
-					className="form-control"
+					className="form-control text-dark"
 					placeholder="Write your message!"
 					style={{ resize: "none" }}
 					value={message}
@@ -57,4 +57,4 @@ const WhatsappWindow = () => {
 		</div>
 	);
 };
-export default WhatsappWindow;
+export default SingleMessage;
