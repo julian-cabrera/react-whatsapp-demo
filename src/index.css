@@ -1,7 +1,45 @@
 * {
-	color: #f8f8f8 !important;
+  color: #cacaca !important;
+
+  /* border: 1px red solid; */
 }
+
 body {
-	min-height: 100vh !important;
-	background-color: #202020 !important;
+  background-color: #101010 !important;
+  overflow: hidden !important;
+}
+svg {
+  align-self: center !important;
+}
+#wsp-main {
+  display: flex !important;
+  width: 95vw !important;
+  min-height: 85vh !important;
+}
+#wsp-contacts {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 450px !important;
+  height: auto !important;
+  position: relative !important;
+  background-color: #202020 !important;
+}
+#wsp-chat {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 35% !important;
+  height: auto !important;
+}
+#contact-photo {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 50% !important;
+}
+.text-input {
+  background-color: #505050 !important;
+  border-color: #505050 !important;
+}
+.hover-light:hover {
+  background-color: #505050 !important;
 }
