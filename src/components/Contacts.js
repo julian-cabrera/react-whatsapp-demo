@@ -21,13 +21,13 @@ const Contacts = () => {
   ]);
 
   return (
-    <div id="wsp-contacts" className="position-relative bg-dark">
+    <div id="wsp-contacts" className="position-relative bg-dark border-gray">
       <Profile />
       <SearchBar />
       {contactList.map((contacto) => (
         <div key={contacto.id} className="row m-1 p-1 rounded hover-light">
           <div className="col-2">
-            <img id="contact-photo" src={contacto.foto} />
+            <img id="contact-photo" src={contacto.foto} alt="pic" />
           </div>
           <div className="col">
             <div className="row">

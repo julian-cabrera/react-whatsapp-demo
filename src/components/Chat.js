@@ -1,10 +1,12 @@
 import ChatInfo from "./ChatInfo";
+import { ChatInput } from "./ChatInput";
 
 const Chat = () => {
   return (
-    <div id="wsp-chat">
+    <div id="wsp-chat" className="bg-pattern  border-gray">
       <ChatInfo nombreContacto="contact name" />
-      <div>Chat</div>
+      <div className="">Chat</div>
+      <ChatInput />
     </div>
   );
 };
