@@ -1,24 +1,22 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import SearchBar from "../SearchBar";
 import Profile from "./Profile";
 
 const Contacts = () => {
-  const [contactList, setContactList] = useState([
-    {
-      id: 1,
-      foto: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/rick-and-morty-poopybuthole-1574420029.jpg",
-      nombre: "Juan",
-      ultMensaje: "Hola",
-      hora: "08:45 AM",
-    },
-    {
-      id: 2,
-      foto: "link",
-      nombre: "María",
-      ultMensaje: "Holiiii",
-      hora: "09:433 AM",
-    },
-  ]);
+  const [contactList, setContactList] = useState([]);
+  const getContacts = () => {
+    axios
+      .get(`http://localhost:8080/chat`)
+      .then((resp) => setContactList(resp.data))
+      .catch((err) => alert(err));
+
+    console.table([...contactList]);
+  };
+
+  useEffect(() => {
+    getContacts();
+  }, []);
 
   return (
     <div id="wsp-contacts" className="position-relative bg-dark border-gray">
@@ -31,12 +29,14 @@ const Contacts = () => {
           </div>
           <div className="col">
             <div className="row">
-              <span className="col-8 text-start fw-bold">
+              <span className="col-8 text-start text-catamaran-bold">
                 {contacto.nombre}
               </span>
               <span className="col-4 text-end">{contacto.hora}</span>
             </div>
-            <div className="row ps-2">{contacto.ultMensaje}</div>
+            <div className="row ps-2 text-montserrat">
+              {contacto.ultMensaje}
+            </div>
           </div>
         </div>
       ))}
