@@ -5,8 +5,8 @@ const RouterComponent = () => {
   return (
     <BrowserRouter className="container">
       <div className="row bg-dark">
-        <h1 className="text-center p-2 m-1 text-catamaran-bold">
-          Whatsapp Demo
+        <h1 className="text-center p-2 m-1 text-titillium-bold">
+          WHATSAPP DEMO
         </h1>
       </div>
 
