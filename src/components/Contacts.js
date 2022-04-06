@@ -3,20 +3,19 @@ import { useEffect, useState } from "react";
 import SearchBar from "../SearchBar";
 import Profile from "./Profile";
 
-const Contacts = () => {
-  const [contactList, setContactList] = useState([]);
+const Contacts = ({ contactList, contact }) => {
+  const [contactListState, setContactListState] = useState([]);
+
   const getContacts = () => {
     axios
-      .get(`http://localhost:8080/chat`)
-      .then((resp) => setContactList(resp.data))
+      .get(`http://localhost:8080/chat/full`)
+      .then((resp) => setContactListState(resp.data))
       .catch((err) => alert(err));
   };
-  const getLastMessage = (chatId) => {
-    axios
-      .get(`http://localhost:8080/message?chatId=${chatId}`)
-      .then((resp) => setContactList(resp.data))
-      .catch((err) => alert(err));
-  };
+
+  useEffect(() => {
+    getContacts();
+  }, []);
 
   const dateFormatter = (unixTimestamp) => {
     return new Intl.DateTimeFormat("en-US", {
@@ -26,29 +25,35 @@ const Contacts = () => {
     }).format(unixTimestamp);
   };
 
-  useEffect(() => {
-    getContacts();
-  }, []);
+  const findContact = (id) => {
+    const list = [...contactList];
+    console.log("pre contact: " + contact);
+    contact = list.find((contact) => contact[0] === id);
+    console.log("post contact: " + contact);
+  };
 
   return (
     <div id="wsp-contacts" className="position-relative bg-dark border-gray">
       <Profile />
       <SearchBar />
-      {contactList.map((contact) => (
-        <div key={contact.id} className="row m-1 p-1 rounded hover-light">
+      {contactListState.map((contact) => (
+        <div
+          key={contact[0]}
+          className="row m-1 p-1 rounded hover-light"
+          onClick={() => findContact(contact[0])}>
           <div className="col-2">
-            <img id="contact-photo" src={contact.image} alt="pic" />
+            <img id="contact-photo" src={contact[1]} alt="pic" />
           </div>
           <div className="col">
             <div className="row">
               <span className="col-8 text-start text-titillium-bold">
-                {contact.name}
+                {contact[3]}
               </span>
               <span className="col-4 text-end text-titillium">
-                {dateFormatter(contact.last_time)}
+                {dateFormatter(contact[2])}
               </span>
             </div>
-            <div className="row ps-2 text-montserrat">{getLastMessage}</div>
+            <div className="row ps-2 text-montserrat">{contact[4]}</div>
           </div>
         </div>
       ))}
