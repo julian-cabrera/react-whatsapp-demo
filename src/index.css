@@ -101,14 +101,14 @@ svg {
   border: 1px var(--secondary-light) solid;
 }
 .message-sent {
-  margin: 1rem 10rem 1rem 1rem !important;
+  margin: 1rem 1rem 1rem 10rem !important;
   padding: 0.2rem 0 0.2rem 1rem !important;
   border: 1px rgba(202, 202, 202, 0.2) groove !important;
   background-color: var(--primary-dark) !important;
   box-shadow: 5px 5px 5px -1px rgba(202, 202, 202, 0.1) !important;
 }
 .message-received {
-  margin: 1rem 1rem 1rem 10rem !important;
+  margin: 1rem 10rem 1rem 1rem !important;
   padding: 0.2rem 0 0.2rem 1rem !important;
   border: 1px rgba(202, 202, 202, 0.2) groove !important;
   box-shadow: 5px 5px 5px -1px rgba(202, 202, 202, 0.1) !important;

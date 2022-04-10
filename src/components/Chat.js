@@ -1,31 +1,35 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import ChatInfo from "./ChatInfo";
 import { ChatInput } from "./ChatInput";
 import Message from "./Message";
 
 const Chat = ({ contact }) => {
-  const [currentChat, setCurrentChat] = useState({});
-  const [messages, setMessages] = useState([
-    { id: 1, body: "Hola", status: "sent" },
-    { id: 2, body: "Hola que tal", status: "received" },
-    { id: 3, body: "Chau gracias", status: "sent" },
-    { id: 4, body: "Noo graciavo", status: "received" },
-  ]);
+  const [messages, setMessages] = useState([]);
+
+  const getMessages = () => {
+    axios
+      .get(`http://localhost:8080/message?chatID=${contact[0]}`)
+      .then((resp) => {
+        setMessages(resp.data);
+        console.log(resp.data);
+      })
+      .catch((err) => alert(err));
+  };
 
   useEffect(() => {
-    setCurrentChat(contact);
-    console.log("contact from ChatJs: " + contact[0]);
-  }, []);
+    getMessages();
+  }, [contact]);
 
   return (
     <div id="wsp-chat" className="bg-pattern border-gray">
-      <ChatInfo nombreContacto={currentChat[3] + ""} />
+      <ChatInfo nombreContacto={contact[3] + ""} profilePicture={contact[1]} />
       <div id="wsp-chatbody">
         {messages.map((msg) => (
           <Message key={msg.id} message={msg} />
         ))}
       </div>
-      <ChatInput />
+      <ChatInput chatID={contact[0]} />
     </div>
   );
 };

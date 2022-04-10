@@ -9,14 +9,14 @@ const ChatInfo = (props) => {
         <img
           id="contact-photo-chat"
           className=" w-auto h-100 rounded-circle"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSETLV9cfLpPrl_nkiOCVNg0M19nqI6fuvn9qnXxMVBd_h5hRdhZ7UrLcI40yUbEB1w9Kk&usqp=CAU"
+          src={props.profilePicture}
           alt="contact-img"
         />
       </div>
       <div className="col-10 my-auto">
-        <h2 className="text-montserrat fw-bold my-auto">
+        <h4 className="text-montserrat fw-bold my-auto">
           {props.nombreContacto}
-        </h2>
+        </h4>
       </div>
     </div>
   );

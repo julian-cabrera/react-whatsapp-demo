@@ -1,17 +1,77 @@
-export const ChatInput = () => {
+import axios from "axios";
+import { useState } from "react";
+
+export const ChatInput = ({ chatID }) => {
+  /* { audio: null,
+  body: "",
+  caption: null,
+  chatId: chatID,
+  filename: null,
+  fromMe: true,
+  quotedMsgBody: null,
+  quotedMsgId: null,
+  time: 1649564131,
+  type: "chat" } */
+
+  const [message, setMessage] = useState({
+    audio: null,
+    body: null,
+    caption: null,
+    chatId: null,
+    filename: null,
+    fromMe: true,
+    quotedMsgBody: null,
+    quotedMsgId: null,
+    type: "chat",
+  });
+
+  const sendMessage = () => {
+    message.chatId = chatID;
+    console.log(message);
+
+    if (
+      message.body !== "" &&
+      message.chatId !== "" &&
+      message.body !== null &&
+      message.chatId !== null
+    ) {
+      axios
+        .post(`http://localhost:8080/webhook/send`, message)
+        .then(console.log(`Message sent!`), console.log(message))
+        .catch((err) => alert(err));
+    }
+  };
+
   return (
     <div
       id="wsp-chatinput"
-      className="row row-cols-2 p-2 bg-dark border-gray input-group  border-gray align-items-center">
-      <div className="col-11">
+      className="row p-2 bg-dark border-gray input-group border-gray align-items-center">
+      <div className="col-1">
+        <button className="btn hover-light">
+          {/* Button onClick => Open file browser and save file to something */}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="28"
+            height="28"
+            fill="currentColor"
+            className="bi bi-paperclip"
+            viewBox="0 0 16 16">
+            <path d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z" />
+          </svg>
+        </button>
+      </div>
+      <div className="col-10">
         <input
           type="text"
           className="form-control rounded text-input"
           placeholder="Type a message"
+          onChange={(e) => {
+            message.body = e.target.value;
+          }}
         />
       </div>
-      <div className="col-1 justify-content-center">
-        <button className="btn hover-light">
+      <div className="col-1 mx-auto">
+        <button className="btn hover-light mx-auto" onClick={sendMessage}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="28"
