@@ -12,7 +12,6 @@ const Chat = ({ contact }) => {
       .get(`http://localhost:8080/message?chatID=${contact[0]}`)
       .then((resp) => {
         setMessages(resp.data);
-        console.log(resp.data);
       })
       .catch((err) => alert(err));
   };
@@ -21,7 +20,13 @@ const Chat = ({ contact }) => {
     getMessages();
   }, [contact]);
 
-  return (
+  return contact[0] === undefined || contact[0] === null ? (
+    <div id="wsp-chat" className="bg-pattern border-gray">
+      <h1 className="text-titillium-bold text-center my-auto">
+        Select a chat!
+      </h1>
+    </div>
+  ) : (
     <div id="wsp-chat" className="bg-pattern border-gray">
       <ChatInfo nombreContacto={contact[3] + ""} profilePicture={contact[1]} />
       <div id="wsp-chatbody">

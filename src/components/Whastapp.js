@@ -10,7 +10,10 @@ const Whatsapp = () => {
   const getContacts = () => {
     axios
       .get(`http://localhost:8080/chat/full`)
-      .then((resp) => setContactList(resp.data))
+      .then((resp) => {
+        setContactList(resp.data);
+        console.log(resp.data);
+      })
       .catch((err) => alert(err));
   };
 

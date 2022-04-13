@@ -26,12 +26,15 @@ svg {
   min-height: 85vh !important;
 }
 #wsp-contacts {
-  display: flex !important;
+  display: block !important;
   flex-direction: column !important;
   width: 450px !important;
   height: auto !important;
   position: relative !important;
   background-color: var(--primary-dark) !important;
+
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
 }
 #wsp-chat {
   position: relative !important;
@@ -62,6 +65,13 @@ svg {
   width: 100% !important;
   height: 100% !important;
   border-radius: 50% !important;
+}
+.contact-last-message {
+  max-width: inherit !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  overflow-wrap: break-word !important;
+  text-overflow: ellipsis !important;
 }
 .bg-pattern {
   background-color: var(--primary-dark);
@@ -95,6 +105,7 @@ svg {
   border-color: var(--secondary-light) !important;
 }
 .hover-light:hover {
+  cursor: pointer !important;
   background-color: var(--secondary-light) !important;
 }
 .border-gray {
@@ -102,10 +113,12 @@ svg {
 }
 .message-sent {
   margin: 1rem 1rem 1rem 10rem !important;
-  padding: 0.2rem 0 0.2rem 1rem !important;
+  padding: 0.2rem 1rem 0.2rem 1rem !important;
   border: 1px rgba(202, 202, 202, 0.2) groove !important;
-  background-color: var(--primary-dark) !important;
   box-shadow: 5px 5px 5px -1px rgba(202, 202, 202, 0.1) !important;
+  text-align: end !important;
+
+  background-color: var(--primary-dark) !important;
 }
 .message-received {
   margin: 1rem 10rem 1rem 1rem !important;
