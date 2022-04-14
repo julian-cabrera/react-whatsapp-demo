@@ -33,11 +33,11 @@ const Contacts = ({ contactList, setContact }) => {
           key={cont[0]}
           className="row m-1 p-1 rounded hover-light"
           onClick={() => findContact(cont[0])}>
-          <div className="col-2 contact-item">
-            <img id="contact-photo" src={cont[1]} alt="pic" />
+          <div className="col-2">
+            <img src={cont[1]} alt="pic" className="contact-photo" />
           </div>
 
-          <div className="col-10 contact-item">
+          <div className="col-10 contact-item contact-last-message">
             <div className="row">
               <span className="col-8 text-start text-titillium-bold">
                 {cont[3]}
@@ -46,7 +46,7 @@ const Contacts = ({ contactList, setContact }) => {
                 {dateFormatter(cont[2])}
               </span>
             </div>
-            <div className="row text-montserrat contact-last-message">
+            <div className="row text-montserrat">
               {!cont[4].startsWith("https://") ? (
                 cont[4]
               ) : (

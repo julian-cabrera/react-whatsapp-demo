@@ -1,18 +1,7 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const ChatInput = ({ chatID }) => {
-  /* { audio: null,
-  body: "",
-  caption: null,
-  chatId: chatID,
-  filename: null,
-  fromMe: true,
-  quotedMsgBody: null,
-  quotedMsgId: null,
-  time: 1649564131,
-  type: "chat" } */
-
   const [message, setMessage] = useState({
     audio: null,
     body: null,
@@ -25,9 +14,9 @@ export const ChatInput = ({ chatID }) => {
     type: "chat",
   });
 
+  const inputRef = useRef(null);
   const sendMessage = () => {
     message.chatId = chatID;
-    console.log(message);
 
     if (
       message.body !== "" &&
@@ -35,10 +24,23 @@ export const ChatInput = ({ chatID }) => {
       message.body !== null &&
       message.chatId !== null
     ) {
-      axios
-        .post(`http://localhost:8080/webhook/send`, message)
-        .then(console.log(`Message sent!`), console.log(message))
-        .catch((err) => alert(err));
+      // axios
+      //   .post(`http://localhost:8080/webhook/send`, message)
+      //   .then(console.log(`Message sent!`), console.log(message))
+      //   .catch((err) => alert(err));
+
+      setMessage({ ...message, body: "" });
+      inputRef.current.value = "";
+    }
+  };
+
+  useEffect(() => {
+    inputRef.current.focus();
+  });
+
+  const sendMessageOnKeyPress = (keyEvent) => {
+    if (keyEvent.charCode === 13) {
+      sendMessage();
     }
   };
 
@@ -62,12 +64,15 @@ export const ChatInput = ({ chatID }) => {
       </div>
       <div className="col-10">
         <input
+          id="input-message"
           type="text"
           className="form-control rounded text-input"
           placeholder="Type a message"
+          ref={inputRef}
           onChange={(e) => {
-            message.body = e.target.value;
+            setMessage({ ...message, body: e.target.value });
           }}
+          onKeyPress={sendMessageOnKeyPress}
         />
       </div>
       <div className="col-1 mx-auto">

@@ -28,7 +28,9 @@ svg {
 #wsp-contacts {
   display: block !important;
   flex-direction: column !important;
-  width: 450px !important;
+  flex: 35% !important;
+  min-width: 400px !important;
+  max-width: 400px !important;
   height: auto !important;
   position: relative !important;
   background-color: var(--primary-dark) !important;
@@ -61,7 +63,7 @@ svg {
   max-height: 6.2vh !important;
   position: absolute !important;
 }
-#contact-photo {
+.contact-photo {
   width: 100% !important;
   height: 100% !important;
   border-radius: 50% !important;
@@ -112,7 +114,8 @@ svg {
   border: 1px var(--secondary-light) solid;
 }
 .message-sent {
-  margin: 1rem 1rem 1rem 10rem !important;
+  margin: 1rem !important;
+  margin-left: 10rem !important;
   padding: 0.2rem 1rem 0.2rem 1rem !important;
   border: 1px rgba(202, 202, 202, 0.2) groove !important;
   box-shadow: 5px 5px 5px -1px rgba(202, 202, 202, 0.1) !important;
@@ -128,4 +131,10 @@ svg {
 
   color: var(--primary-dark) !important;
   background-color: var(--primary-light) !important;
+}
+.chat-img {
+  padding-right: 1rem;
+  margin: 1rem;
+  max-width: 100% !important;
+  max-height: 25vh !important;
 }
